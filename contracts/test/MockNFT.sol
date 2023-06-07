@@ -11,7 +11,7 @@ contract MockNFT is ERC721, Ownable {
     Counters.Counter private _tokenIdCounter;
     mapping(uint => string) private _tokenURIs;
 
-    constructor() ERC721("MockNFT", "MFT") {}
+    constructor() ERC721("Small Arms Syndicate", "SAS") {}
 
     function _baseURI() internal pure override returns (string memory) {
         return "";

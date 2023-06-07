@@ -157,7 +157,6 @@ contract RexFarming is BaseFarming {
         emit Deposit(msg.sender, _pid, _amount);
     }
 
-    // Withdraw LP tokens from WanSwapFarm.
     function withdraw(
         uint256 _pid,
         uint256 _amount

@@ -41,13 +41,19 @@ contract AirDrop is Initializable, AccessControl, ReentrancyGuard {
         endTime = endTime_;
     }
 
-    function claim(uint nftId) external nonReentrant isNFTHolder(nftId) {
+    function claim(uint nftId) public nonReentrant isNFTHolder(nftId) {
         uint pending = pendingReward(nftId);
 
         nftClaimed[nftId] += pending;
 
         IERC20(rewardToken).safeTransfer(msg.sender, pending);
         emit Claim(msg.sender, nftId, pending);
+    }
+
+    function batchClaim(uint[] calldata _nftIds) external {
+        for (uint i = 0; i < _nftIds.length; i++) {
+            claim(_nftIds[i]);
+        }
     }
 
     function pendingReward(uint nftId) public view returns (uint) {
